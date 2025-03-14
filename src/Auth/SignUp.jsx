@@ -1,133 +1,104 @@
-import React, { useState, useEffect } from 'react';
-import { createClient } from "@supabase/supabase-js";
+import React, { useState } from 'react';
+import supabase from '../utils/supabase';
 import { useNavigate } from 'react-router-dom'; 
 
-export default function SignUp() {
-    // Navigation hook
-    const navigate = useNavigate();
-    
-    // Initialize Supabase client with environment variables
-    const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-    const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
-    const supabase = createClient(supabaseUrl, supabaseKey);
-    
-    // State for form data
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        password: '',
-    });
-    
-    // State for form submission status
-    const [status, setStatus] = useState({
-        submitting: false,
-        submitted: false,
-        error: null
-    });
-    
-    // Handle input changes
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({
-            ...prev,
-            [name]: value
-        }));
-    };
-    
-    // Handle form submission
-    const handleCreate = async (e) => {
-        e.preventDefault();
-        setStatus({ submitting: true, submitted: false, error: null });
-        
-        try {
-            // Generate a smaller ID within PostgreSQL integer range
-            const uniqueId = Math.floor(Math.random() * 1000000); // Random number between 0 and 999,999
-            
-            // Insert data into Supabase with smaller ID
-            const { error } = await supabase
-                .from('media')
-                .insert([{ 
-                    id: uniqueId,
-                    name: formData.name,
-                    email: formData.email,
-                    password: formData.password
-                }]);
-                
-            if (error) throw error;
-            
-            // Reset form on success
-            setFormData({
-                name: '',
-                email: '',
-                password: '',
-            });
-            
-            setStatus({ 
-                submitting: false, 
-                submitted: true, 
-                error: null 
-            });
-            
-            // Navigate to home page after successful signup
-            navigate('/home');
-            
-        }  catch (error) {
-            console.error('Error Creating Account:', error);
-            setStatus({ 
-                submitting: false, 
-                submitted: false, 
-                error: error.message || 'An error occurred while creating your account.'
-            });
-        }
-    };
 
-    return (
-        <>
-        <section className='container'>
-            <form onSubmit={handleCreate} className='form'>
-                <h1>Sign Up</h1>
-                {status.error && <p className="error-message">{status.error}</p>}
-                <div className='form-group'>
-                    <label htmlFor="name">Name</label>
-                    <input 
-                        type="text" 
-                        id='name' 
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <div className='form-group'>
-                    <label htmlFor="email">Email</label>
-                    <input 
-                        type="email" 
-                        id='email' 
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <div className='form-group'>
-                    <label htmlFor="password">Password</label>
-                    <input 
-                        type="password" 
-                        id='password' 
-                        name="password"
-                        value={formData.password}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <button
-                    type="submit"
-                    disabled={status.submitting}
-                >
-                    {status.submitting ? 'Sending...' : 'Submit'}
-                </button>
-            </form>
-        </section>
-        </>
-    );
+export default function SignUp() {
+    const navigate = useNavigate();
+
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+    name: '',
+  });
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+
+    try {
+      // Step 1: Sign up the user with Supabase Auth
+      const { data: authData, error: authError } = await supabase.auth.signUp({
+        email: formData.email,
+        password: formData.password,
+      });
+
+      if (authError) {
+        throw authError;
+      }
+
+      console.log('User signed up:', authData.user);
+
+      // Step 2: Insert into media table (matching the schema: name, email, password)
+      const { data: mediaData, error: mediaError } = await supabase
+        .from('media')
+        .insert({
+          name: formData.name,
+          email: formData.email,
+          password: formData.password, // Note: Storing plain password is insecure
+        })
+        .select()
+        .single();
+
+      if (mediaError) {
+        throw mediaError;
+      }
+      navigate('/home');
+
+    } catch (err) {
+      setError(err.message || 'Error creating account');
+      console.error('Error Creating Account:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="signup-container">
+      <h2>Sign Up</h2>
+      {error && <p className="error" style={{ color: 'red' }}>{error}</p>}
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>Name:</label>
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label>Email:</label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label>Password:</label>
+          <input
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <button type="submit" disabled={loading}>
+          {loading ? 'Signing up...' : 'Sign Up'}
+        </button>
+      </form>
+    </div>
+  );
 }
