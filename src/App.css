@@ -10,7 +10,6 @@
   --shadow: rgba(0, 0, 0, 0.1);
 }
 
-/* Base styles (Adjusted for left sidebar) */
 body {
   background: linear-gradient(135deg, var(--background), #e8eef5);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -19,10 +18,9 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  margin-left: 80px; /* Space for left sidebar */
+  margin-left: 80px;
 }
 
-/* Paragraph (CreatePost) */
 .paragraph {
   max-width: 600px;
   margin: 30px auto;
@@ -58,7 +56,6 @@ body {
   border-radius: 3px;
 }
 
-/* Textarea */
 .textarea-custom {
   width: 100%;
   padding: 12px;
@@ -80,7 +77,6 @@ body {
   box-shadow: 0 0 0 3px rgba(74, 111, 165, 0.2);
 }
 
-/* Image Input */
 .image-input {
   width: 100%;
   max-width: 200px;
@@ -90,7 +86,6 @@ body {
   border: 1px solid var(--border);
 }
 
-/* Button */
 .post-button,
 .submit-button {
   background: linear-gradient(to right, var(--primary), var(--primary-light));
@@ -132,31 +127,28 @@ body {
   transform: translateX(4px);
 }
 
-/* Sidebar (Converted to Left Sidebar) */
 .navbar-custom {
   background: linear-gradient(to bottom, #2d3748, #1a202c);
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2); /* Right shadow for sidebar */
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2); 
   position: fixed;
   top: 0;
   left: 0;
-  width: 80px; /* Fixed width for sidebar */
-  height: 100vh; /* Full height */
+  width: 80px; 
+  height: 100vh; 
   z-index: 100;
-  padding-top: 20px; /* Top padding for spacing */
+  padding-top: 20px; 
   display: flex;
-  flex-direction: column; /* Vertical layout */
+  flex-direction: column; 
   align-items: center;
 }
 
-/* Nav Links Container */
 .nav-links {
   display: flex;
-  flex-direction: column; /* Vertical stacking */
+  flex-direction: column; 
   gap: 24px;
   height: 100%;
 }
 
-/* Nav Link */
 .nav-link {
   color: white;
   font-size: 1.5rem;
@@ -173,7 +165,7 @@ body {
 
 .nav-link:hover {
   background-color: rgba(255, 255, 255, 0.1);
-  transform: translateX(5px); /* Slide right on hover */
+  transform: translateX(5px);
 }
 
 .nav-link:active {
@@ -190,11 +182,10 @@ body {
   transform: scale(1.2);
 }
 
-/* Tooltip (Adjusted for sidebar) */
 .nav-link::after {
   content: attr(data-title);
   position: absolute;
-  left: 70px; /* To the right of the sidebar */
+  left: 70px; 
   background-color: #1a202c;
   color: white;
   padding: 5px 10px;
@@ -211,7 +202,6 @@ body {
   opacity: 1;
 }
 
-/* Active state indicator */
 .nav-link.active {
   background-color: rgba(255, 255, 255, 0.15);
 }
@@ -219,14 +209,13 @@ body {
 .nav-link.active::before {
   content: '';
   position: absolute;
-  left: -10px; /* Left bar indicator */
+  left: -10px; 
   width: 5px;
   height: 70%;
   background: linear-gradient(to bottom, var(--accent), var(--accent-light));
   border-radius: 0 3px 3px 0;
 }
 
-/* SignUp and SignIn Containers */
 .signup-container,
 .login-container {
   max-width: 400px;
@@ -237,12 +226,10 @@ body {
   box-shadow: 0 8px 24px var(--shadow);
 }
 
-/* Form Group */
 .form-group {
   margin-bottom: 20px;
 }
 
-/* Input */
 .input-custom {
   width: 100%;
   padding: 12px;
@@ -261,13 +248,11 @@ body {
   box-shadow: 0 0 0 3px rgba(74, 111, 165, 0.2);
 }
 
-/* Error */
 .error {
   color: red;
   margin-bottom: 15px;
 }
 
-/* Animation */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
@@ -283,11 +268,11 @@ body {
   }
 
   .navbar-custom {
-    width: 60px; /* Slimmer sidebar */
+    width: 60px; 
   }
 
   body {
-    margin-left: 60px; /* Adjusted for slimmer sidebar */
+    margin-left: 60px; 
   }
 
   .nav-link {
@@ -302,17 +287,17 @@ body {
   }
 
   .nav-link::after {
-    left: 50px; /* Adjusted for slimmer sidebar */
+    left: 50px; 
   }
 }
 
 @media (max-width: 640px) {
   .navbar-custom {
     width: 100%;
-    height: 60px; /* Convert to bottom navbar on mobile */
+    height: 60px; 
     top: auto;
     bottom: 0;
-    flex-direction: row; /* Horizontal layout */
+    flex-direction: row; 
     padding: 8px 0;
   }
 
@@ -324,16 +309,16 @@ body {
   }
 
   .nav-link::after {
-    display: none; /* No tooltips on mobile */
+    display: none;
   }
 
   .nav-link:hover {
-    transform: translateY(-3px); /* Vertical hover for bottom navbar */
+    transform: translateY(-3px); 
   }
 
   .nav-link.active::before {
     left: 0;
-    top: -5px; /* Top indicator for bottom navbar */
+    top: -5px; 
     width: 70%;
     height: 3px;
     border-radius: 0 0 3px 3px;
@@ -341,6 +326,6 @@ body {
 
   body {
     margin-left: 0;
-    margin-bottom: 60px; /* Space for bottom navbar */
+    margin-bottom: 60px; 
   }
 }
