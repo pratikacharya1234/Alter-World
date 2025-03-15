@@ -1,7 +1,7 @@
 import React from 'react'
 import NavBar from '../Components/NavBar'
 
-export default function Profile() {
+export default function Setting() {
   return (
     <div>
         <NavBar/>

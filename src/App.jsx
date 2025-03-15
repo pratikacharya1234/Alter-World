@@ -5,6 +5,7 @@ import SignUp from './Auth/SignUp'
 import SignIn from './Auth/SignIn'
 import './App.css'
 import Profile from './Pages/Profile'
+import Setting from './Pages/Setting'
 
 
 export default function App() {
@@ -16,6 +17,7 @@ export default function App() {
         <Route path="/signin" element={ <SignIn />} />
         <Route path="/home" element={<Home />} />
         <Route path="/profile" element={<Profile/>} />
+        <Route path="/setting" element={<Setting/>} />
       </Routes>
     </BrowserRouter>
   )

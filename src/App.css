@@ -172,6 +172,185 @@ button:hover svg {
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* Side Navigation Bar Styling */
+nav.bg-gray-800 {
+  background: linear-gradient(to bottom, #2d3748, #1a202c);
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 80px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2rem;
+}
+
+nav .flex {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+nav .justify-between {
+  justify-content: flex-start;
+}
+
+nav .p-4 {
+  padding: 0;
+}
+
+nav .text-white {
+  color: white;
+}
+
+nav a {
+  color: white;
+  font-size: 1.5rem;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+nav a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateX(5px);
+}
+
+nav a:active {
+  transform: translateX(0);
+}
+
+nav a svg {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+nav a.px-4 {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Active state indicator */
+nav a.active {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+nav a.active::before {
+  content: '';
+  position: absolute;
+  left: -10px;
+  width: 5px;
+  height: 70%;
+  background: linear-gradient(to bottom, var(--accent, #ff8c42), var(--accent-light, #ffa668));
+  border-radius: 0 3px 3px 0;
+}
+
+/* Hover tooltip for labels */
+nav a::after {
+  content: attr(data-title);
+  position: absolute;
+  left: 70px;
+  background-color: #1a202c;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  white-space: nowrap;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+nav a:hover::after {
+  opacity: 1;
+}
+
+/* Animation for icons */
+nav a svg {
+  transition: transform 0.2s ease;
+}
+
+nav a:hover svg {
+  transform: scale(1.2);
+}
+
+/* Main content adjustment */
+body {
+  margin-left: 80px;
+}
+
+/* Media queries for responsive sidebar */
+@media (max-width: 768px) {
+  nav.bg-gray-800 {
+    width: 60px;
+  }
+  
+  nav a {
+    width: 40px;
+    height: 40px;
+  }
+  
+  nav a svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+  
+  body {
+    margin-left: 60px;
+  }
+}
+
+/* Mobile navigation - bottom bar instead of sidebar */
+@media (max-width: 640px) {
+  nav.bg-gray-800 {
+    height: auto;
+    width: 100%;
+    bottom: 0;
+    top: auto;
+    left: 0;
+    flex-direction: row;
+    padding: 0.5rem 0;
+  }
+  
+  nav .flex {
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+    gap: 0;
+  }
+  
+  nav a::after {
+    display: none;
+  }
+  
+  nav a:hover {
+    transform: translateY(-5px);
+  }
+  
+  nav a.active::before {
+    left: 0;
+    top: -5px;
+    width: 70%;
+    height: 3px;
+    border-radius: 0 0 3px 3px;
+  }
+  
+  body {
+    margin-left: 0;
+    margin-bottom: 60px;
+  }
+}
+
 /* Media queries for responsive design */
 @media (max-width: 768px) {
   .paragraph {

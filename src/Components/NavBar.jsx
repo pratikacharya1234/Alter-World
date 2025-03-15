@@ -9,9 +9,9 @@ export default function NavBar() {
     <div>
         <nav className='bg-gray-800 p-4 text-white flex justify-between'>
             <div>
-            <Link href="/" className=''><FaHome/></Link>
-            <Link href="/profile" className='px-4'><ImProfile/></Link>
-            <Link href="/setting" className='px-4'><RiSettingsFill/></Link>
+            <Link to="/" className=''><FaHome/></Link>
+            <Link to="/profile" className='px-4'><ImProfile/></Link>
+            <Link to="/setting" className='px-4'><RiSettingsFill/></Link>
             </div>
         </nav>
     </div>
