@@ -1,7 +1,12 @@
 import React from 'react'
+import CreatePost from '../Components/CreatePost'
+import NavBar from '../Components/NavBar'
 
 export default function Home() {
   return (
-    <div>Welcome to Alter World Where you can post about your daily life activity with text</div>
+    <>
+      <CreatePost />
+      <NavBar />
+    </>
   )
 }
