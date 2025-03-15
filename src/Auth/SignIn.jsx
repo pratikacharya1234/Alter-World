@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import supabase from '../utils/supabase';
-import { useNavigate } from 'react-router-dom'; 
+import { Link, useNavigate } from 'react-router-dom'; 
 
 
-export default function Login() {
+export default function SignIn() {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -76,58 +76,8 @@ export default function Login() {
         <button type="submit" disabled={loading}>
           {loading ? 'Logging in...' : 'Login'}
         </button>
+          <p>New to ALter World? <Link to = "/signup">Click Here</Link></p>
       </form>
     </div>
   );
 }
-// Optional: Add some basic styles
-const styles = `
-  .login-container {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-
-  .error, .success {
-    margin-bottom: 15px;
-    padding: 8px;
-    border-radius: 4px;
-  }
-
-  form div {
-    margin-bottom: 15px;
-  }
-
-  label {
-    display: block;
-    margin-bottom: 5px;
-  }
-
-  input {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
-
-  button {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-
-  button:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
-  }
-`;
-
-// Add styles to document if using plain CSS
-const styleSheet = document.createElement('style');
-styleSheet.textContent = styles;
-document.head.appendChild(styleSheet);

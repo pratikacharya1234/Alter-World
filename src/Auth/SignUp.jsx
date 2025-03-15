@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import supabase from '../utils/supabase';
-import { useNavigate } from 'react-router-dom'; 
+import { Link, useNavigate } from 'react-router-dom'; 
 
 
 export default function SignUp() {
@@ -98,6 +98,7 @@ export default function SignUp() {
         <button type="submit" disabled={loading}>
           {loading ? 'Signing up...' : 'Sign Up'}
         </button>
+        <p>New to ALter World? <Link to = "/signin">Click Here</Link></p>
       </form>
     </div>
   );
