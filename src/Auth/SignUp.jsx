@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import supabase from '../utils/supabase';
-import { Link, useNavigate } from 'react-router-dom'; 
-
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function SignUp() {
-    const navigate = useNavigate();
-
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -22,36 +20,24 @@ export default function SignUp() {
     e.preventDefault();
     setLoading(true);
     setError('');
-
     try {
-      // Step 1: Sign up the user with Supabase Auth
       const { data: authData, error: authError } = await supabase.auth.signUp({
         email: formData.email,
         password: formData.password,
       });
-
-      if (authError) {
-        throw authError;
-      }
-
+      if (authError) throw authError;
       console.log('User signed up:', authData.user);
-
-      // Step 2: Insert into media table (matching the schema: name, email, password)
       const { data: mediaData, error: mediaError } = await supabase
         .from('media')
         .insert({
           name: formData.name,
           email: formData.email,
-          password: formData.password, // Note: Storing plain password is insecure
+          password: formData.password,
         })
         .select()
         .single();
-
-      if (mediaError) {
-        throw mediaError;
-      }
+      if (mediaError) throw mediaError;
       navigate('/home');
-
     } catch (err) {
       setError(err.message || 'Error creating account');
       console.error('Error Creating Account:', err);
@@ -65,7 +51,7 @@ export default function SignUp() {
       <h2>Sign Up</h2>
       {error && <p className="error" style={{ color: 'red' }}>{error}</p>}
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="form-group"> 
           <label>Name:</label>
           <input
             type="text"
@@ -73,9 +59,10 @@ export default function SignUp() {
             value={formData.name}
             onChange={handleChange}
             required
+            className="input-custom"
           />
         </div>
-        <div>
+        <div className="form-group">
           <label>Email:</label>
           <input
             type="email"
@@ -83,9 +70,10 @@ export default function SignUp() {
             value={formData.email}
             onChange={handleChange}
             required
+            className="input-custom"
           />
         </div>
-        <div>
+        <div className="form-group">
           <label>Password:</label>
           <input
             type="password"
@@ -93,12 +81,13 @@ export default function SignUp() {
             value={formData.password}
             onChange={handleChange}
             required
+            className="input-custom"
           />
         </div>
-        <button type="submit" disabled={loading}>
+        <button type="submit" className="submit-button" disabled={loading}>
           {loading ? 'Signing up...' : 'Sign Up'}
         </button>
-        <p>New to ALter World? <Link to = "/signin">Click Here</Link></p>
+        <p>New to ALter World? <Link to="/signin">Click Here</Link></p>
       </form>
     </div>
   );

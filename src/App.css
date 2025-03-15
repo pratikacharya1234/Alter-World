@@ -10,7 +10,7 @@
   --shadow: rgba(0, 0, 0, 0.1);
 }
 
-/* Base styles */
+/* Base styles (Adjusted for left sidebar) */
 body {
   background: linear-gradient(135deg, var(--background), #e8eef5);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -19,17 +19,10 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  margin-left: 80px; /* For sidebar layout */
+  margin-left: 80px; /* Space for left sidebar */
 }
 
-/* Typography utilities */
-.text-center { text-align: center; }
-.text-2xl { font-size: 1.5rem; line-height: 2rem; }
-.font-bold { font-weight: 700; }
-.my-0 { margin-top: 0; margin-bottom: 0; }
-.p-0 { padding: 0; }
-
-/* Post creation component */
+/* Paragraph (CreatePost) */
 .paragraph {
   max-width: 600px;
   margin: 30px auto;
@@ -65,11 +58,11 @@ body {
   border-radius: 3px;
 }
 
-/* Form elements */
-textarea {
+/* Textarea */
+.textarea-custom {
   width: 100%;
   padding: 12px;
-  border: 1px solid var(--border);
+  border: 2px solid var(--border);
   border-radius: 8px;
   background-color: #fafbfc;
   font-family: inherit;
@@ -78,20 +71,28 @@ textarea {
   transition: border-color 0.3s, box-shadow 0.3s;
   resize: vertical;
   min-height: 100px;
-  margin: 0;
+  margin: 8px 0;
 }
 
-textarea:focus {
+.textarea-custom:focus {
   outline: none;
   border-color: var(--primary-light);
   box-shadow: 0 0 0 3px rgba(74, 111, 165, 0.2);
 }
 
-.border-2 { border-width: 2px; }
-.m-5 { margin: 1.25rem; }
+/* Image Input */
+.image-input {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
 
-/* Button styles */
-button {
+/* Button */
+.post-button,
+.submit-button {
   background: linear-gradient(to right, var(--primary), var(--primary-light));
   color: white;
   padding: 12px 24px;
@@ -106,75 +107,57 @@ button {
   gap: 8px;
   transition: all 0.3s ease;
   box-shadow: 0 4px 10px rgba(74, 111, 165, 0.2);
+  margin-top: 8px;
 }
 
-button:hover {
+.post-button:hover,
+.submit-button:hover {
   background: linear-gradient(to right, var(--primary-dark), var(--primary));
   box-shadow: 0 6px 14px rgba(74, 111, 165, 0.3);
 }
 
-button:active {
+.post-button:active,
+.submit-button:active {
   transform: translateY(2px);
 }
 
-.bg-blue-500 { background-color: var(--primary); }
-.text-white { color: white; }
-.px-4 { padding-left: 1rem; padding-right: 1rem; }
-.py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
-.mt-2 { margin-top: 0.5rem; }
-
-/* Icon styling */
-button svg {
+.post-button svg,
+.submit-button svg {
   width: 1.25em;
   height: 1.25em;
   transition: transform 0.3s ease;
 }
 
-button:hover svg {
+.post-button:hover svg {
   transform: translateX(4px);
 }
 
-/* Animation for elements */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Side Navigation Bar Styling */
-nav.bg-gray-800 {
+/* Sidebar (Converted to Left Sidebar) */
+.navbar-custom {
   background: linear-gradient(to bottom, #2d3748, #1a202c);
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2); /* Right shadow for sidebar */
   position: fixed;
   top: 0;
   left: 0;
-  height: 100vh;
-  width: 80px;
+  width: 80px; /* Fixed width for sidebar */
+  height: 100vh; /* Full height */
   z-index: 100;
+  padding-top: 20px; /* Top padding for spacing */
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* Vertical layout */
   align-items: center;
-  padding-top: 2rem;
 }
 
-nav .flex {
+/* Nav Links Container */
+.nav-links {
   display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+  flex-direction: column; /* Vertical stacking */
+  gap: 24px;
+  height: 100%;
 }
 
-nav .justify-between {
-  justify-content: flex-start;
-}
-
-nav .p-4 {
-  padding: 0;
-}
-
-nav .text-white {
-  color: white;
-}
-
-nav a {
+/* Nav Link */
+.nav-link {
   color: white;
   font-size: 1.5rem;
   text-decoration: none;
@@ -188,45 +171,30 @@ nav a {
   position: relative;
 }
 
-nav a:hover {
+.nav-link:hover {
   background-color: rgba(255, 255, 255, 0.1);
-  transform: translateX(5px);
+  transform: translateX(5px); /* Slide right on hover */
 }
 
-nav a:active {
+.nav-link:active {
   transform: translateX(0);
 }
 
-nav a svg {
+.nav-link svg {
   width: 1.75rem;
   height: 1.75rem;
+  transition: transform 0.2s ease;
 }
 
-nav a.px-4 {
-  padding-left: 0;
-  padding-right: 0;
+.nav-link:hover svg {
+  transform: scale(1.2);
 }
 
-/* Active state indicator */
-nav a.active {
-  background-color: rgba(255, 255, 255, 0.15);
-}
-
-nav a.active::before {
-  content: '';
-  position: absolute;
-  left: -10px;
-  width: 5px;
-  height: 70%;
-  background: linear-gradient(to bottom, var(--accent), var(--accent-light));
-  border-radius: 0 3px 3px 0;
-}
-
-/* Hover tooltip for labels */
-nav a::after {
+/* Tooltip (Adjusted for sidebar) */
+.nav-link::after {
   content: attr(data-title);
   position: absolute;
-  left: 70px;
+  left: 70px; /* To the right of the sidebar */
   background-color: #1a202c;
   color: white;
   padding: 5px 10px;
@@ -239,72 +207,140 @@ nav a::after {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-nav a:hover::after {
+.nav-link:hover::after {
   opacity: 1;
 }
 
-/* Animation for icons */
-nav a svg {
-  transition: transform 0.2s ease;
+/* Active state indicator */
+.nav-link.active {
+  background-color: rgba(255, 255, 255, 0.15);
 }
 
-nav a:hover svg {
-  transform: scale(1.2);
+.nav-link.active::before {
+  content: '';
+  position: absolute;
+  left: -10px; /* Left bar indicator */
+  width: 5px;
+  height: 70%;
+  background: linear-gradient(to bottom, var(--accent), var(--accent-light));
+  border-radius: 0 3px 3px 0;
 }
 
-/* Media queries for responsive design */
+/* SignUp and SignIn Containers */
+.signup-container,
+.login-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 25px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px var(--shadow);
+}
+
+/* Form Group */
+.form-group {
+  margin-bottom: 20px;
+}
+
+/* Input */
+.input-custom {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background-color: #fafbfc;
+  font-family: inherit;
+  font-size: 16px;
+  box-sizing: border-box;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.input-custom:focus {
+  outline: none;
+  border-color: var(--primary-light);
+  box-shadow: 0 0 0 3px rgba(74, 111, 165, 0.2);
+}
+
+/* Error */
+.error {
+  color: red;
+  margin-bottom: 15px;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Media Queries */
 @media (max-width: 768px) {
-  .paragraph {
+  .paragraph,
+  .signup-container,
+  .login-container {
     width: 90%;
     padding: 20px;
   }
-  
-  nav.bg-gray-800 {
-    width: 60px;
+
+  .navbar-custom {
+    width: 60px; /* Slimmer sidebar */
   }
-  
+
   body {
-    margin-left: 60px;
+    margin-left: 60px; /* Adjusted for slimmer sidebar */
+  }
+
+  .nav-link {
+    width: 40px;
+    height: 40px;
+    font-size: 1.25rem;
+  }
+
+  .nav-link svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .nav-link::after {
+    left: 50px; /* Adjusted for slimmer sidebar */
   }
 }
 
-/* Mobile responsive design */
 @media (max-width: 640px) {
-  nav.bg-gray-800 {
-    height: auto;
+  .navbar-custom {
     width: 100%;
-    bottom: 0;
+    height: 60px; /* Convert to bottom navbar on mobile */
     top: auto;
-    left: 0;
-    flex-direction: row;
-    padding: 0.5rem 0;
+    bottom: 0;
+    flex-direction: row; /* Horizontal layout */
+    padding: 8px 0;
   }
-  
-  nav .flex {
+
+  .nav-links {
     flex-direction: row;
-    width: 100%;
     justify-content: space-around;
     gap: 0;
+    width: 100%;
   }
-  
-  nav a::after {
-    display: none;
+
+  .nav-link::after {
+    display: none; /* No tooltips on mobile */
   }
-  
-  nav a:hover {
-    transform: translateY(-5px);
+
+  .nav-link:hover {
+    transform: translateY(-3px); /* Vertical hover for bottom navbar */
   }
-  
-  nav a.active::before {
+
+  .nav-link.active::before {
     left: 0;
-    top: -5px;
+    top: -5px; /* Top indicator for bottom navbar */
     width: 70%;
     height: 3px;
     border-radius: 0 0 3px 3px;
   }
-  
+
   body {
     margin-left: 0;
-    margin-bottom: 60px;
+    margin-bottom: 60px; /* Space for bottom navbar */
   }
 }

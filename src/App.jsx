@@ -1,11 +1,12 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import './App.css'
 import Home from './Pages/Home'
 import SignUp from './Auth/SignUp'
 import SignIn from './Auth/SignIn'
 import Profile from './Pages/Profile'
 import Setting from './Pages/Setting'
-import './App.css'
+import CreatePost from './Pages/CreatePost'
 
 
 export default function App() {
@@ -18,6 +19,7 @@ export default function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/profile" element={<Profile/>} />
         <Route path="/setting" element={<Setting/>} />
+        <Route path="/create" element={<CreatePost/>} />
       </Routes>
     </BrowserRouter>
   )
