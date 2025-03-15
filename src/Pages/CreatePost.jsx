@@ -17,7 +17,6 @@ export default function CreatePost() {
           placeholder="Write something here..."
         >
         </textarea>
-        <input type="image" className="image-input" />
         <button className="post-button"> 
           Post <BiSolidArrowToRight />
         </button>
