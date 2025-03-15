@@ -1,4 +1,3 @@
-/* Home page styling to match the login/signup design language */
 :root {
   --primary: #4a6fa5;
   --primary-light: #6189c9;
@@ -11,6 +10,7 @@
   --shadow: rgba(0, 0, 0, 0.1);
 }
 
+/* Base styles */
 body {
   background: linear-gradient(135deg, var(--background), #e8eef5);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -19,30 +19,17 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
+  margin-left: 80px; /* For sidebar layout */
 }
 
-.text-center {
-  text-align: center;
-}
+/* Typography utilities */
+.text-center { text-align: center; }
+.text-2xl { font-size: 1.5rem; line-height: 2rem; }
+.font-bold { font-weight: 700; }
+.my-0 { margin-top: 0; margin-bottom: 0; }
+.p-0 { padding: 0; }
 
-.text-2xl {
-  font-size: 1.5rem;
-  line-height: 2rem;
-}
-
-.font-bold {
-  font-weight: 700;
-}
-
-.my-0 {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.p-0 {
-  padding: 0;
-}
-
+/* Post creation component */
 .paragraph {
   max-width: 600px;
   margin: 30px auto;
@@ -78,6 +65,7 @@ body {
   border-radius: 3px;
 }
 
+/* Form elements */
 textarea {
   width: 100%;
   padding: 12px;
@@ -99,14 +87,10 @@ textarea:focus {
   box-shadow: 0 0 0 3px rgba(74, 111, 165, 0.2);
 }
 
-.border-2 {
-  border-width: 2px;
-}
+.border-2 { border-width: 2px; }
+.m-5 { margin: 1.25rem; }
 
-.m-5 {
-  margin: 1.25rem;
-}
-
+/* Button styles */
 button {
   background: linear-gradient(to right, var(--primary), var(--primary-light));
   color: white;
@@ -133,27 +117,11 @@ button:active {
   transform: translateY(2px);
 }
 
-.bg-blue-500 {
-  background-color: var(--primary);
-}
-
-.text-white {
-  color: white;
-}
-
-.px-4 {
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-.py-2 {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-}
-
-.mt-2 {
-  margin-top: 0.5rem;
-}
+.bg-blue-500 { background-color: var(--primary); }
+.text-white { color: white; }
+.px-4 { padding-left: 1rem; padding-right: 1rem; }
+.py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+.mt-2 { margin-top: 0.5rem; }
 
 /* Icon styling */
 button svg {
@@ -250,7 +218,7 @@ nav a.active::before {
   left: -10px;
   width: 5px;
   height: 70%;
-  background: linear-gradient(to bottom, var(--accent, #ff8c42), var(--accent-light, #ffa668));
+  background: linear-gradient(to bottom, var(--accent), var(--accent-light));
   border-radius: 0 3px 3px 0;
 }
 
@@ -284,25 +252,15 @@ nav a:hover svg {
   transform: scale(1.2);
 }
 
-/* Main content adjustment */
-body {
-  margin-left: 80px;
-}
-
-/* Media queries for responsive sidebar */
+/* Media queries for responsive design */
 @media (max-width: 768px) {
+  .paragraph {
+    width: 90%;
+    padding: 20px;
+  }
+  
   nav.bg-gray-800 {
     width: 60px;
-  }
-  
-  nav a {
-    width: 40px;
-    height: 40px;
-  }
-  
-  nav a svg {
-    width: 1.25rem;
-    height: 1.25rem;
   }
   
   body {
@@ -310,7 +268,7 @@ body {
   }
 }
 
-/* Mobile navigation - bottom bar instead of sidebar */
+/* Mobile responsive design */
 @media (max-width: 640px) {
   nav.bg-gray-800 {
     height: auto;
@@ -348,13 +306,5 @@ body {
   body {
     margin-left: 0;
     margin-bottom: 60px;
-  }
-}
-
-/* Media queries for responsive design */
-@media (max-width: 768px) {
-  .paragraph {
-    width: 90%;
-    padding: 20px;
   }
 }

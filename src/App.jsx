@@ -3,9 +3,9 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './Pages/Home'
 import SignUp from './Auth/SignUp'
 import SignIn from './Auth/SignIn'
-import './App.css'
 import Profile from './Pages/Profile'
 import Setting from './Pages/Setting'
+import './App.css'
 
 
 export default function App() {
